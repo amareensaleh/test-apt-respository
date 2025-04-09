@@ -1,0 +1,13 @@
+Package: hello-world
+Version: 1.0.0
+Architecture: all
+Maintainer: Saleh Amareen <alamareens@gmail.com>
+Filename: ./hello-world_1.0.0_all.deb
+Size: 788
+MD5sum: d232320e965932c8cc349a51b13c8e65
+SHA1: d2e9dd2bc77657fd2d4f89c4811cb5154255de29
+SHA256: 4aec58067e0d406a62dbfde895dbe1333d61901f45b6f42bce315794feeb1150
+Section: base
+Priority: optional
+Description: A simple hello world program
+
