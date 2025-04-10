@@ -2,7 +2,7 @@ Package: hello-world
 Version: 1.0.0
 Architecture: all
 Maintainer: You <you@example.com>
-Filename: ./hello-world_1.0.0_arm64.deb
+Filename: dists/stable/main/binary-arm64/hello-world_1.0.0_arm64.deb
 Size: 788
 MD5sum: d232320e965932c8cc349a51b13c8e65
 SHA1: d2e9dd2bc77657fd2d4f89c4811cb5154255de29
