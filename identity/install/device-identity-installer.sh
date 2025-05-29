@@ -36,9 +36,10 @@ if [[ -z "$DEVICE_NAME" || -z "$DEVICE_CODE" ]]; then
   exit 1
 fi
 
-echo "Requesting identity package for device: $DEVICE_NAME"
+LOCATION="${IDENTITY_SERVICE_URL}:${IDENTITY_SERVICE_PORT}${IDENTITY_SERVICE_URI}"
+echo "Requesting identity package for device: $DEVICE_NAME from: $LOCATION"
 
-curl -X POST --location "${IDENTITY_SERVICE_URL}:${IDENTITY_SERVICE_PORT}${IDENTITY_SERVICE_URI}" \
+curl -X POST --location  "${LOCATION}"\
   -H "Content-Type: application/json" \
   -d "{
         \"deviceName\": \"${DEVICE_NAME}\",
@@ -67,5 +68,3 @@ mv thingsboardCA.pem "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 echo "Device trust installed to $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
 cd "$OLD_WD" || exit 1
-
-
