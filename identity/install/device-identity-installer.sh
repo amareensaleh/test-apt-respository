@@ -5,7 +5,7 @@ echo "Running a script to install device identity"
 DEVICE_NAME=""
 DEVICE_CODE=""
 
-IDENTITY_SERVICE_URL="https://flex.qa1.dominos.com/api/flex-device-service/deviceSetup/identity"
+IDENTITY_SERVICE_URL="https://flex.qa1.dominos.com/api/flex-device-service"
 IDENTITY_SERVICE_PORT="8080"
 DEVICE_IDENTITY_CERTS_DIR="/etc/device-identity/dpz"
 DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR="/etc/device-trust/dpz/agents/thingsboard"
