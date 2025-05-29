@@ -39,6 +39,7 @@ fi
 LOCATION="${IDENTITY_SERVICE_URL}:${IDENTITY_SERVICE_PORT}${IDENTITY_SERVICE_URI}"
 echo "Requesting identity package for device: $DEVICE_NAME from: $LOCATION"
 
+set -x  # enable debug tracing
 curl -X POST --location  "${LOCATION}"\
   -H "Content-Type: application/json" \
   -d "{
@@ -46,6 +47,7 @@ curl -X POST --location  "${LOCATION}"\
         \"deviceCode\": \"${DEVICE_CODE}\"
       }" \
   --output identity_package.zip
+set +x  # disable debug tracing
 
 if [[ $? -ne 0 || ! -f identity_package.zip ]]; then
   echo "Failed to download identity package"
