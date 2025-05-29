@@ -62,7 +62,7 @@ mkdir -p "$DEVICE_IDENTITY_CERTS_DIR"
 echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
 
 mkdir -p "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
-echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
+echo "Created dir: $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
 UNZIP_DIR=$(mktemp -d /tmp/dpz-device-identity.XXXXXXXX) || exit 1
 unzip -o identity_package.zip -d $UNZIP_DIR || exit 1
