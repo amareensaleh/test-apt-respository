@@ -76,3 +76,7 @@ mv thingsboardCA.pem "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 echo "Device trust installed to $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
 cd "$OLD_WD" || exit 1
+
+echo "Cleaning up"
+echo "Removing $IDENTITY_PACKAGE_NAME"
+rm -rf "${IDENTITY_PACKAGE_NAME}"
