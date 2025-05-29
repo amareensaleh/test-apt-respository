@@ -5,9 +5,7 @@ echo "Running a script to install device identity"
 DEVICE_NAME=""
 DEVICE_CODE=""
 
-IDENTITY_SERVICE_URL="https://flex.qa1.dominos.com/api/flex-device-service"
-IDENTITY_SERVICE_URI="/deviceSetup/identity"
-IDENTITY_SERVICE_PORT="8080"
+IDENTITY_SERVICE_URL="https://flex.qa1.dominos.com/api/flex-device-service/deviceSetup/identity"
 
 DEVICE_IDENTITY_CERTS_DIR="/etc/device-identity/dpz"
 DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR="/etc/device-trust/dpz/agents/thingsboard"
@@ -36,7 +34,7 @@ if [[ -z "$DEVICE_NAME" || -z "$DEVICE_CODE" ]]; then
   exit 1
 fi
 
-LOCATION="${IDENTITY_SERVICE_URL}:${IDENTITY_SERVICE_PORT}${IDENTITY_SERVICE_URI}"
+LOCATION="${IDENTITY_SERVICE_URL}"
 echo "Requesting identity package for device: $DEVICE_NAME from: $LOCATION"
 
 set -x  # enable debug tracing
