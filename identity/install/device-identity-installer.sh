@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Running a script to install device identity"
+
 DEVICE_NAME=""
 DEVICE_CODE=""
 
@@ -8,6 +10,7 @@ IDENTITY_SERVICE_PORT="443"
 DEVICE_IDENTITY_CERTS_DIR="/etc/device-identity/dpz"
 DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR="/etc/device-trust/dpz/agents/thingsboard"
 
+echo "Parsing input args"
 # Parse --key value style args
 while [[ $# -gt 0 ]]; do
   case $1 in
