@@ -64,9 +64,9 @@ echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
 mkdir -p "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 echo "Created dir: $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
-UNZIP_DIR=$(mktemp -d /tmp/dpz-device-identity.XXXXXXXX) || exit 1
-unzip -o identity_package.zip -d $UNZIP_DIR || exit 1
-cd "$UNZIP_DIR" || exit 1
+TMP_UNZIP_DIR=$(mktemp -d /tmp/dpz-device-identity.XXXXXXXX) || exit 1
+unzip -o identity_package.zip -d $TMP_UNZIP_DIR || exit 1
+cd "$TMP_UNZIP_DIR" || exit 1
 
 mv deviceKey.pem "$DEVICE_IDENTITY_CERTS_DIR"
 mv deviceCert.pem "$DEVICE_IDENTITY_CERTS_DIR"
@@ -80,3 +80,6 @@ cd "$OLD_WD" || exit 1
 echo "Cleaning up"
 echo "Removing $IDENTITY_PACKAGE_NAME"
 rm -rf "${IDENTITY_PACKAGE_NAME}"
+
+echo "Removing $TMP_UNZIP_DIR"
+rm -rf "${TMP_UNZIP_DIR}"
