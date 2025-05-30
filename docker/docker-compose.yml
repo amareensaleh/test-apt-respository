@@ -4,5 +4,5 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile
     volumes:
-      - ../:/repo
+      - ../packages/dpkg:/repo
     working_dir: /repo/dists/stable/main/binary-all
