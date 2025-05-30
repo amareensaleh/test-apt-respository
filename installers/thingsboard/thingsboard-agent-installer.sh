@@ -42,19 +42,24 @@ done
 
 ## We only want to run as root
 root_check() {
+  echo "Root check"
   if [[ $(whoami) != "root" ]]; then
     echo "This should only be run as root"
     exit 1
+  else
+    echo "Running as root"
   fi
 }
 
 # resolve qbee agent version
 resolve_thingsboard_agent_version() {
+  echo "Resolving thingsboard agent version"
   if [[ -z $THINGSBOARD_AGENT_VERSION ]]; then
     echo "Thingsboard version not specified by user; attempting to fetch latest"
-    THINGSBOARD_AGENT_VERSION=$(wget -O - -q "$BASE_URL/thingsboard/latest.txt")
+    THINGSBOARD_AGENT_VERSION=$(wget -O - -q "$BASE_INSTALLERS_URL/thingsboard/latest.txt")
     echo "Latest agent version is: $THINGSBOARD_AGENT_VERSION"
   fi
+  echo "Thingsboard agent version is: ${THINGSBOARD_AGENT_VERSION}"
 }
 
 # construct the agent url
@@ -84,6 +89,7 @@ resolve_thingsboard_agent_version() {
 #}
 
 install_wget_tool () {
+  echo "Attempting to install wget tool"
   local wget_installer
   wget_installer="wget_installer.sh"
 
@@ -94,6 +100,7 @@ install_wget_tool () {
 }
 
 detect_package_manager() {
+  echo "Attempting to detect package manager"
   if [[ -n $(command -v dpkg) ]]; then
     PACKAGE_MANAGER="dpkg"
   elif [[ -n $(command -v rpm) ]]; then
@@ -102,9 +109,11 @@ detect_package_manager() {
     echo "No supported package manager found, exiting."
     exit 1
   fi
+  echo "Package manager is: ${PACKAGE_MANAGER}"
 }
 
-detect_metadata(){
+detect_device_metadata(){
+  echo "Attempting to detect device metadata"
   local device_metadata
   device_metadata="device-metadata-utils.sh"
   mkdir -p $TMP_DIR
@@ -115,7 +124,7 @@ detect_metadata(){
 }
 
 install_dpz_flex_list(){
-  echo "Installing dpz-flex.list file"
+  echo "Attempting to install dpz-flex.list file"
   mkdir -p $TMP_DIR
   wget -q "${BASE_URL}/dpz-flex.list" -O "${TMP_DIR}/dpz-flex.list" || exit 1
   mv "${TMP_DIR}/dpz-flex.list" "/etc/apt/sources.list.d/dpz-flex.list"
@@ -185,7 +194,7 @@ install_thingsboard_agent(){
 
 root_check
 detect_package_manager
-detect_metadata
+detect_device_metadata
 install_wget_tool
 install_dpz_flex_list
 

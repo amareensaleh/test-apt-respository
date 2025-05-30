@@ -4,6 +4,7 @@ DEVICE_ARCHITECTURE=""
 DIST_TAG=""
 
 detect_os_distro(){
+  echo "Attempting to detect device OS distro"
   if [[ $PACKAGE_MANAGER == "rpm" ]]; then
     . /etc/os-release # Read OS-release info
     case "$ID" in
@@ -28,12 +29,15 @@ detect_os_distro(){
         ;;
     esac
   fi
+  echo "Device OS distro is: ${DIST_TAG}"
 }
 
 detect_device_architecture() {
+  echo "Attempting to detect device architecture"
   if [[ $PACKAGE_MANAGER == "dpkg" ]]; then
     DEVICE_ARCHITECTURE=$(dpkg --print-architecture)
   elif [[ $PACKAGE_MANAGER == "rpm" ]]; then
     DEVICE_ARCHITECTURE=$(rpm --eval '%{_arch}')
   fi
+  echo "Device architecture is: ${DEVICE_ARCHITECTURE}"
 }
