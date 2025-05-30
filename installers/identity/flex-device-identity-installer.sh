@@ -6,14 +6,13 @@ DEVICE_NAME=""
 DEVICE_CODE=""
 
 IDENTITY_SERVICE_URL="https://flex.qa1.dominos.com/api/flex-device-service/deviceSetup/identity"
-IDENTITY_PACKAGE_NAME="identity_package.zip"
+IDENTITY_PACKAGE_NAME="flex_device_identity.zip"
 
-DEVICE_IDENTITY_CERTS_DIR="/etc/device-identity/dpz"
-DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR="/etc/device-trust/dpz/agents/thingsboard"
-
+DEVICE_IDENTITY_CERTS_DIR="/etc/device-identity/dpz/flex"
+DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR="/etc/device-trust/dpz/flex/agents/thingsboard"
+TMP_DIR="/tmp/dpz/flex"
 
 echo "Parsing input args"
-# Parse --key value style args
 while [[ $# -gt 0 ]]; do
   case $1 in
     --deviceName)
@@ -56,7 +55,6 @@ else
   echo "Successfully downloaded ${IDENTITY_PACKAGE_NAME}"
 fi
 
-
 OLD_WD=$(pwd)
 mkdir -p "$DEVICE_IDENTITY_CERTS_DIR"
 echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
@@ -64,8 +62,8 @@ echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
 mkdir -p "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 echo "Created dir: $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
-TMP_UNZIP_DIR=$(mktemp -d /tmp/dpz-device-identity.XXXXXXXX) || exit 1
-unzip -o identity_package.zip -d $TMP_UNZIP_DIR || exit 1
+TMP_UNZIP_DIR=$(mktemp -d "${TMP_DIR}/device-identity.XXXXXXXX") || exit 1
+unzip -o ${IDENTITY_PACKAGE_NAME} -d $TMP_UNZIP_DIR || exit 1
 cd "$TMP_UNZIP_DIR" || exit 1
 
 mv deviceKey.pem "$DEVICE_IDENTITY_CERTS_DIR"

@@ -1,2 +1,0 @@
-#!/bin/bash
-wget -qO - https://raw.githubusercontent.com/amareensaleh/test-apt-respository/main/installers/identity/device-identity-installer.sh | sudo bash -s -- --deviceName "RP5-02" --deviceCode "1234567890"
