@@ -82,3 +82,6 @@ rm -rf "${IDENTITY_PACKAGE_NAME}"
 
 echo "Removing $TMP_UNZIP_DIR"
 rm -rf "${TMP_UNZIP_DIR}"
+
+echo "Removing $TMP_DIR"
+rm -rf "${TMP_DIR}"
