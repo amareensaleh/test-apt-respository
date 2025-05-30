@@ -62,6 +62,7 @@ echo "Created dir: $DEVICE_IDENTITY_CERTS_DIR"
 mkdir -p "$DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 echo "Created dir: $DEVICE_TRUST_THINGSBOARD_CA_CERTS_DIR"
 
+mkdir -p "$TMP_DIR"
 TMP_UNZIP_DIR=$(mktemp -d "${TMP_DIR}/device-identity.XXXXXXXX") || exit 1
 unzip -o ${IDENTITY_PACKAGE_NAME} -d $TMP_UNZIP_DIR || exit 1
 cd "$TMP_UNZIP_DIR" || exit 1
